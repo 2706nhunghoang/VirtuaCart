@@ -4,7 +4,7 @@
 
 ## 🎬 Video Demo
 
-> 🔗 **[Xem demo tại đây](https://drive.google.com/file/d/1QxLB_QymWOqGufnhQSkERjnlx7o1teiC/view?usp=sharing)**  
+> 🔗 **[Xem demo tại đây](https://drive.google.com/file/d/1rju8rCe61NQ3XdK8ghMqEf5CU11ClFUl/view?usp=sharing)**  
 
 ---
 
