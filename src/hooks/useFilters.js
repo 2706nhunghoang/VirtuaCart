@@ -1,4 +1,3 @@
-// hooks/useFilters.js
 import { useState, useMemo } from "react";
 import { useDebounce } from "./useDebounce";
 import { products } from "../data/mockData";

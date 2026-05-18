@@ -1,65 +1,42 @@
-// components/Product/FilterBar.jsx
 import { memo } from "react";
 import Input from "../Common/Input";
-// import { DEFAULT_FILTERS } from "../../hooks/useFilters";
 
 const CATEGORIES = ["All", "Fashion", "Accessories", "Home", "Sports", "Tech"];
 const MIN_PRICE = 10;
 const MAX_PRICE = 999;
 
-// ── Range slider đôi (two-thumb) ───────────────────────────────────────────
-// Dùng 2 input[type=range] chồng lên nhau, track giữa tô màu bằng CSS vars
+// ── Range price ───────────────────────────────────────────
 function PriceRangeSlider({ value, onChange }) {
   const [min, max] = value;
-  const pctMin = ((min - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100;
-  const pctMax = ((max - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100;
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between text-xs font-medium text-slate-500">
-        <span>${min}</span>
-        <span>${max}</span>
-      </div>
-
-      {/* track wrapper */}
-      <div className="relative h-5 flex items-center">
-        {/* filled track */}
-        <div
-          className="absolute h-1.5 rounded-full bg-secondary pointer-events-none"
-          style={{ left: `${pctMin}%`, right: `${100 - pctMax}%` }}
-        />
-        {/* base track */}
-        <div className="absolute inset-x-0 h-1.5 rounded-full bg-border -z-10 dark:bg-border-dark" />
-
-        {/* thumb min */}
-        <input
-          type="range"
+      <div className="flex items-center gap-2 dark:text-muted-dark">
+        <Input
+          type="number"
           min={MIN_PRICE}
-          max={MAX_PRICE}
+          max={max - 1}
           value={min}
-          onChange={(e) => {
-            const v = Math.min(Number(e.target.value), max - 1);
-            onChange([v, max]);
-          }}
-          className="range-thumb absolute inset-0 w-full opacity-0 cursor-pointer"
+          onChange={(e) =>
+            onChange([Math.max(MIN_PRICE, Number(e.target.value)), max])
+          }
+          className="input w-full text-sm  dark:border-border-dark dark:bg-surface-dark dark:text-muted-dark"
         />
-        {/* thumb max */}
-        <input
-          type="range"
-          min={MIN_PRICE}
+        <span className="text-slate-400 shrink-0">—</span>
+        <Input
+          type="number"
+          min={min + 1}
           max={MAX_PRICE}
           value={max}
-          onChange={(e) => {
-            const v = Math.max(Number(e.target.value), min + 1);
-            onChange([min, v]);
-          }}
-          className="range-thumb absolute inset-0 w-full opacity-0 cursor-pointer"
+          onChange={(e) =>
+            onChange([min, Math.min(MAX_PRICE, Number(e.target.value))])
+          }
+          className="input w-full text-sm  dark:border-border-dark dark:bg-surface-dark dark:text-muted-dark"
         />
       </div>
     </div>
   );
 }
-
 // ── Star rating buttons ────────────────────────────────────────────────────
 function RatingFilter({ value, onChange }) {
   return (
@@ -67,7 +44,7 @@ function RatingFilter({ value, onChange }) {
       {[0, 1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}
-          onClick={() => onChange(star === value ? 0 : star)} // toggle off nếu click lại
+          onClick={() => onChange(star === value ? 0 : star)}
           className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-colors
             ${
               value === star
