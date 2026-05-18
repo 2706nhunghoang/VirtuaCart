@@ -8,6 +8,12 @@
 
 ---
 
+## 🎬 Link Deploy
+
+> 🔗 **[Truy cập tại đây](https://elegant-cocada-1ce486.netlify.app/)**  
+
+---
+
 ## 1. Luồng xử lý dữ liệu
 
 ### 🎨 1.1 Theme (Giao diện sáng / tối)

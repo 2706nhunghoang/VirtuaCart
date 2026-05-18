@@ -16,16 +16,16 @@ function AppContent({ currentPage, onNavigate }) {
   return <Home onNavigate={onNavigate} />
 }
 
-// App.jsx
+
 function App() {
-  const [currentPage, setCurrentPage] = useState('home')  // ✅ kéo lên đây
+  const [currentPage, setCurrentPage] = useState('home')
   const navigate = (page) => setCurrentPage(page)
 
   return (
     <ThemeProvider>
       <AuthProvider>
         <CartProvider>
-          <Layout onNavigate={navigate}>   {/* ✅ truyền xuống Layout */}
+          <Layout onNavigate={navigate}>
             <AppContent currentPage={currentPage} onNavigate={navigate} />
           </Layout>
         </CartProvider>
