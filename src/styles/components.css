@@ -1,0 +1,127 @@
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-card px-5 py-2.5 text-sm font-medium text-white;
+    @apply bg-primary-500 transition-all duration-200 ease-in-out;
+    @apply hover:bg-primary-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500/30;
+    @apply dark:bg-primary-dark dark:hover:bg-primary-500 dark:focus:ring-primary-dark/30;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Dung o: Button, ProductCard, CartItem, CartPage */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-card border px-5 py-2.5 text-sm font-medium;
+    @apply border-border bg-surface text-muted transition-all duration-200 ease-in-out;
+    @apply hover:border-primary hover:bg-primary-50 hover:text-primary active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/20;
+    @apply dark:border-border-dark dark:bg-surface-dark dark:text-muted-dark;
+    @apply dark:hover:border-primary-dark dark:hover:bg-primary-700/15 dark:hover:text-primary-100;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Dung o: Button, CartItem, CartPage */
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-card px-5 py-2.5 text-sm font-medium text-white;
+    @apply bg-danger transition-all duration-200 ease-in-out;
+    @apply hover:bg-danger/90 active:scale-95 focus:outline-none focus:ring-2 focus:ring-danger/30;
+    @apply dark:bg-danger dark:hover:bg-danger/85 dark:focus:ring-danger/30;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Dung o: Button, Navbar */
+  .btn-ghost {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-pill border text-sm;
+    @apply border-border bg-surface text-muted transition-all duration-200 ease-in-out;
+    @apply hover:border-primary hover:bg-primary-50 hover:text-primary active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/20;
+    @apply dark:border-border-dark dark:bg-surface-dark dark:text-muted-dark;
+    @apply dark:hover:border-primary-dark dark:hover:bg-primary-700/15 dark:hover:text-primary-100;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Dung o: ProductCard, CartPage */
+  .card {
+    @apply rounded-card border border-border bg-surface p-4 shadow-sm transition-colors;
+    @apply dark:border-border-dark dark:bg-surface-dark;
+  }
+
+  /* Dung o: ProductCard */
+  .card-hover {
+    @apply cursor-pointer transition-all duration-300 ease-in-out;
+    @apply hover:-translate-y-1 hover:shadow-md active:scale-[0.98];
+  }
+
+  /* Dung o: Badge, ProductCard, CartItem */
+  .badge {
+    @apply inline-flex items-center rounded-pill px-2 py-0.5 text-xs font-medium;
+  }
+
+  /* Dung o: Badge, ProductCard, CartPage */
+  .badge-primary {
+    @apply inline-flex items-center rounded-pill bg-primary-50 px-2 py-0.5 text-xs font-medium text-primary;
+    @apply dark:bg-primary-700/20 dark:text-primary-100;
+  }
+
+  /* Dung o: Badge, CartItem, CartPage */
+  .badge-success {
+    @apply inline-flex items-center rounded-pill bg-success/10 px-2 py-0.5 text-xs font-medium text-success;
+    @apply dark:bg-success/20 dark:text-success;
+  }
+
+  /* Dung o: Badge, CartItem, CartPage */
+  .badge-danger {
+    @apply inline-flex items-center rounded-pill bg-danger/10 px-2 py-0.5 text-xs font-medium text-danger;
+    @apply dark:bg-danger/20 dark:text-danger;
+  }
+
+  /* Dung o: Badge, Navbar, ProductCard */
+  .badge-muted {
+    @apply inline-flex items-center rounded-pill border border-border bg-surface px-2 py-0.5 text-xs font-medium text-muted;
+    @apply dark:border-border-dark dark:bg-surface-dark dark:text-muted-dark;
+  }
+
+  /* Dung o: SearchBar, LoginForm */
+  .input-base {
+    @apply w-full rounded-card border border-border bg-surface px-4 py-2.5 text-sm text-gray-900 outline-none transition-all duration-200 ease-in-out;
+    @apply placeholder:text-muted focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20;
+    @apply dark:border-border-dark dark:bg-surface-dark dark:text-gray-100 dark:placeholder:text-muted-dark;
+  }
+
+  /* Dung o: SearchBar, LoginForm */
+  .input-error {
+    @apply border-danger focus:border-danger focus:ring-danger/20;
+    @apply dark:border-danger dark:focus:border-danger dark:focus:ring-danger/20;
+  }
+
+  /* Dung o: SearchBar, LoginForm */
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-gray-900;
+    @apply dark:text-gray-100;
+  }
+
+  /* Icon button */
+  .btn-icon {
+    @apply relative flex h-9 w-9 items-center justify-center rounded-xl bg-transparent text-slate-600;
+    @apply hover:bg-slate-100;
+    @apply dark:text-slate-400 dark:hover:bg-slate-800;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/20;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Outline danger button */
+  .btn-danger-outline {
+    @apply inline-flex items-center justify-center rounded-pill border px-3 py-1.5 text-xs font-semibold;
+    @apply border-danger/20 bg-danger/5 text-danger hover:bg-danger/10;
+    @apply dark:border-danger/30 dark:bg-danger/10 dark:text-danger dark:hover:bg-danger/20;
+    @apply focus:outline-none focus:ring-2 focus:ring-danger/20;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Small action button */
+  .btn-action {
+    @apply flex h-7 w-7 items-center justify-center rounded-md bg-slate-100 text-sm text-slate-700;
+    @apply hover:bg-slate-200;
+    @apply dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/20;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+}
