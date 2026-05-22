@@ -1,9 +1,6 @@
 import { memo } from "react";
 import Input from "../Common/Input";
-
-const CATEGORIES = ["All", "Fashion", "Accessories", "Home", "Sports", "Tech"];
-const MIN_PRICE = 10;
-const MAX_PRICE = 999;
+import { FILTER_CATEGORIES, MIN_PRICE, MAX_PRICE } from "../../constants/product";
 
 // ── Range price ───────────────────────────────────────────
 function PriceRangeSlider({ value, onChange }) {
@@ -46,10 +43,9 @@ function RatingFilter({ value, onChange }) {
           key={star}
           onClick={() => onChange(star === value ? 0 : star)}
           className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-colors
-            ${
-              value === star
-                ? "bg-primary text-white border-primary dark:bg-primary-dark dark:border-primary-dark"
-                : "bg-surface text-muted border-border hover:border-primary dark:bg-surface-dark dark:text-muted-dark dark:border-border-dark dark:hover:border-primary-dark"
+            ${value === star
+              ? "bg-primary text-white border-primary dark:bg-primary-dark dark:border-primary-dark"
+              : "bg-surface text-muted border-border hover:border-primary dark:bg-surface-dark dark:text-muted-dark dark:border-border-dark dark:hover:border-primary-dark"
             }`}
         >
           {star === 0 ? "All" : `${"★".repeat(star)}${"☆".repeat(5 - star)}`}
@@ -105,15 +101,14 @@ function FilterBar({
           Category
         </label>
         <div className="flex flex-wrap gap-1.5">
-          {CATEGORIES.map((cat) => (
+          {FILTER_CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter("category", cat)}
               className={`px-3 py-1 rounded-full text-xs font-semibold border transition-colors
-                ${
-                  filters.category === cat
-                    ? "bg-primary text-white border-primary dark:bg-primary-dark dark:border-primary-dark"
-                    : "bg-surface text-muted border-border hover:border-primary dark:bg-surface-dark dark:text-muted-dark dark:border-border-dark dark:hover:border-primary-dark"
+                ${filters.category === cat
+                  ? "bg-primary text-white border-primary dark:bg-primary-dark dark:border-primary-dark"
+                  : "bg-surface text-muted border-border hover:border-primary dark:bg-surface-dark dark:text-muted-dark dark:border-border-dark dark:hover:border-primary-dark"
                 }`}
             >
               {cat}

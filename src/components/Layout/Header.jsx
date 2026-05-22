@@ -1,23 +1,23 @@
 import ThemeToggle from "../Common/ThemeToggle";
-import { useAuth } from "../../context/AuthContext";
-import { useCart } from "../../store/cartContext";
+import { useAuth } from "../../hooks/useAuth";
+import { useCart } from "../../hooks/useCart";
 import Button from "../Common/Button";
+import { PAGES } from "../../constants/paths";
 
 function Header({ onNavigate }) {
   const { user, logout } = useAuth();
-  const { totalItems, clearCart } = useCart();
+  const { totalItems } = useCart();
 
   const handleLogout = () => {
     logout();
-    clearCart();
-  }
+  };
 
   return (
     <header className="bg-surface dark:bg-surface-dark text-primary-700 dark:text-primary-100 sticky top-0 z-10 flex items-center justify-between gap-6 border-b border-slate-200 bg-white/90 px-10 py-4 backdrop-blur-md max-md:flex-col max-md:items-stretch max-md:px-4">
       {/* Logo */}
       <Button
         variant="none"
-        onClick={() => onNavigate?.("home")}
+        onClick={() => onNavigate?.(PAGES.HOME)}
         className="text-[22px] font-extrabold tracking-normal p-0 hover:bg-transparent"
       >
         WoangShop
@@ -63,7 +63,7 @@ function Header({ onNavigate }) {
             {/* Cart icon */}
             <Button
               variant="icon"
-              onClick={() => onNavigate?.("cart")}
+              onClick={() => onNavigate?.(PAGES.CART)}
               aria-label={`Cart — ${totalItems} items`}
             >
               <svg

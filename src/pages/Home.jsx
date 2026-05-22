@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import FilterBar from "../components/Product/FilterBar";
 import ProductList from "../components/Product/ProductList";
 import { useFilters } from "../hooks/useFilters";
-import { useCart } from "../store/cartContext";
+import { useCart } from "../hooks/useCart";
 
 function Home() {
   const { filters, setFilter, resetFilters, filteredProducts, isFiltered } =
@@ -17,7 +17,7 @@ function Home() {
 
   return (
     <div className="mx-auto w-[min(1180px,calc(100%-32px))] py-8 pb-14">
-      
+
 
       {/* Filter + Products */}
       <div className="grid grid-cols-[300px_1fr] gap-8 max-md:grid-cols-1">

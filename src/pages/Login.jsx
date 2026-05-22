@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Button from "../components/Common/Button";
 import Input from "../components/Common/Input";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
+
 function Login() {
-  const { login } = useAuth();
+  const { login, loading } = useAuth();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -12,26 +13,21 @@ function Login() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setCredentials((current) => ({
-      ...current,
-      [name]: value,
-    }));
+    setCredentials((current) => ({ ...current, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
 
-    const result = login(credentials);
-
-    if (!result.success) {
-      setError(result.message);
+    try {
+      await login(credentials);
+    } catch (err) {
+      setError(err?.message || err || "Login failed.");
     }
   };
 
-  const usernameInputClasses = error ? "input-error" : "";
-  const passwordInputClasses = error ? "input-error" : "";
+  const inputErrorClass = error ? "input-error" : "";
 
   return (
     <section className="mx-auto flex min-h-[calc(100vh-73px)] w-full max-w-6xl items-center px-4 py-10">
@@ -47,13 +43,11 @@ function Login() {
 
         <form className="grid gap-5" onSubmit={handleSubmit}>
           <div>
-            <label className="label" htmlFor="username">
-              Username
-            </label>
+            <label className="label" htmlFor="username">Username</label>
             <Input
               id="username"
               name="username"
-              className={usernameInputClasses}
+              className={inputErrorClass}
               placeholder="e.g. user123"
               value={credentials.username}
               onChange={handleChange}
@@ -61,14 +55,12 @@ function Login() {
           </div>
 
           <div>
-            <label className="label" htmlFor="password">
-              Password
-            </label>
+            <label className="label" htmlFor="password">Password</label>
             <Input
               id="password"
               name="password"
               type="password"
-              className={passwordInputClasses}
+              className={inputErrorClass}
               placeholder="Enter password"
               value={credentials.password}
               onChange={handleChange}
@@ -76,7 +68,9 @@ function Login() {
           </div>
 
           {error ? (
-            <p className="badge badge-danger justify-center">{error}</p>
+            <p className="badge badge-danger justify-center">
+              {typeof error === "object" ? error.message || JSON.stringify(error) : error}
+            </p>
           ) : (
             <p className="text-sm text-muted dark:text-muted-dark">
               Demo credentials: <strong>user1 / user2 / user3</strong>, password{" "}
@@ -84,8 +78,8 @@ function Login() {
             </p>
           )}
 
-          <Button className="w-full" type="submit">
-            Login
+          <Button className="w-full" type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
       </div>

@@ -1,7 +1,8 @@
-import { useAuth } from "../context/AuthContext";
-import { useCart } from "../store/cartContext";
+import { useAuth } from "../hooks/useAuth";
+import { useCart } from "../hooks/useCart";
 import { formatCurrency } from "../utils/formatCurrency";
 import Button from "../components/Common/Button";
+import { PAGES } from "../constants/paths";
 
 // ─── Empty state ──────────────────────────────────────────────────────────────
 function EmptyCart({ onNavigate }) {
@@ -25,7 +26,7 @@ function EmptyCart({ onNavigate }) {
         Your cart is empty
       </h2>
 
-      <Button onClick={() => onNavigate?.("home")}>Browse Products</Button>
+      <Button onClick={() => onNavigate?.(PAGES.HOME)}>Browse Products</Button>
     </section>
   );
 }
@@ -128,7 +129,7 @@ function Cart({ onNavigate }) {
           <Button
             variant="secondary"
             className="px-4"
-            onClick={() => onNavigate?.("home")}
+            onClick={() => onNavigate?.(PAGES.HOME)}
           >
             Back to Shop
           </Button>

@@ -1,3 +1,5 @@
+import { PRODUCT_CATEGORIES } from '../constants/product'
+
 const productNames = [
   'Essential Cotton Tee',
   'Urban Runner Sneakers',
@@ -9,7 +11,7 @@ const productNames = [
   'Wireless Desk Lamp',
 ]
 
-const categories = ['Fashion', 'Accessories', 'Home', 'Sports', 'Tech']
+const categories = PRODUCT_CATEGORIES
 
 export const createRandomProduct = (_, index) => {
   const productNumber = index + 1

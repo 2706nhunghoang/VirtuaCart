@@ -1,9 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useDebounce } from "./useDebounce";
 import { products } from "../data/mockData";
-
-const MIN_PRICE = 10;
-const MAX_PRICE = 999;
+import { MIN_PRICE, MAX_PRICE } from "../constants/product";
 
 const DEFAULT_FILTERS = {
   keyword: "",
@@ -32,10 +30,13 @@ export function useFilters() {
     });
   }, [debouncedKeyword, filters.priceRange, filters.category, filters.rating]);
 
-  const setFilter = (key, value) =>
+  const setFilter = useCallback((key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+  }, []);
 
-  const resetFilters = () => setFilters(DEFAULT_FILTERS);
+  const resetFilters = useCallback(() => {
+    setFilters(DEFAULT_FILTERS);
+  }, []);
 
   const isFiltered =
     filters.keyword !== "" ||
